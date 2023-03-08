@@ -335,6 +335,28 @@ function german_noun_n_um_en(lemma) {
 
 /***********************************************************************************/
 
+function hindustani_verb_ur(lemma) {
+	if (!lemma)
+		return [];
+
+	let ger = lemma;
+	let stem = ger.replace(/\u0646\u0627$/, ""); // -nA
+	
+	let m_sg_suffix = "\u0627"; // +A
+	let m_pl_suffix = "\u06D2"; // +e
+	let f_adj_suffix = "\u06CC"; // +I
+	let f_pl_suffix = "\u0650\u06CC\u06BA"; // +I~
+	let potpp = "\u0646"; // +n
+	let imppp = "\u062A"; // +t
+
+	return [
+
+	];
+
+	// detect irregular forms and use -en here?
+}
+
+/***********************************************************************************/
 function german_verb(lemma) {
 	if (!lemma)
 		return [];
@@ -409,9 +431,7 @@ function german_verb(lemma) {
 
 	// detect irregular forms and use -en here?
 }
-
-/***********************************************************************************/
-
+/******************************************************************************/
 function interlingua_noun(lemma) {
 	if (!lemma)
 		return [];
