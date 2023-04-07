@@ -426,6 +426,95 @@ function hindustani_verb_ur(lemma) {
 
 }
 
+function hindustani_verb_hi(lemma) {
+	if (!lemma)
+		return [];
+
+	let ger = lemma;
+	let stem = ger.replace(/\u0928\u093E$/, ""); // -nA
+
+	let m1suffix = "\u093E"; // +A
+	let m2suffix = "\u0947"; // +e
+	let f1suffix = "\u0940"; // +I
+	let f2suffix = "\u0940\u0902"; // +I~
+
+	let conpp = stem + "\u0915"; // [stem]+k
+	let potpp = stem + "\u0928"; // [stem]+n
+	let imppp = stem + "\u0924"; // [stem]+t
+	let prfpp = stem; // [stem]+(0)
+
+	let sbj1s = stem + "\u0942\u0901"; // [stem]+U~
+	let sbj13p = stem + "\u0947\u0902"; // [stem]+e~
+	let sbj23s = stem + m2suffix; // [stem]+e
+	let sbj2p = stem + "\u094B"; // [stem]+o
+
+	let polite1 = stem + "\u093F\u092F\u094B", // [stem]+iyo
+	let polite2 = stem + "\u093F\u092F\u0947"; // [stem]+iye
+
+	if (stem.match(/\u0627$/)) {
+		prfpp = stem + "\u092F"; // [stem]+y
+		sbj1s = stem + "\u090A\u0901"; // [stem]+u'~
+		sbj13p = stem + "\u092F\u0947\u0902"; // [stem]+y'e~
+		sbj23s = stem + "\u092F\u0947"; // [stem]+y'e
+		sbj2p = stem + "\u0913"; // [stem]+u'
+		polite1 = stem + "\u092F\u094B"; // [stem]+yo
+		polite2 = stem + "\u092F\u0947"; // [stem]+ye
+	}
+
+	let definite = "\u0917"; // +g
+	let def1s = sbj1s + definite;
+	let def13p = sbj13p + definite;
+	let def23s = sbj23s + definite;
+	let def2p = sbj2p + definite;
+
+	return [
+		ger,
+		potpp + m2suffix,
+		stem,
+		conpp + m2suffix,
+		conpp + "\u0930", // +r
+
+		ger,
+		potpp + m2suffix,
+		potpp + f1suffix,
+		potpp + f2suffix,
+		imppp + m1suffix,
+		imppp + m2suffix,
+		imppp + f1suffix,
+		imppp + f2suffix,
+		prfpp + m1suffix,
+		prfpp + m2suffix,
+		prfpp + f1suffix,
+		prfpp + f2suffix,
+
+		sbj1s,
+		sbj13p,
+		sbj23s,
+		sbj2p,
+		sbj23s,
+		sbj13p,
+
+		def1s + m1suffix,
+		def13p + m2suffix,
+		def1s + f1suffix,
+		def13p + f1suffix,
+		def23s + m1suffix,
+		def2p + m2suffix,
+		def23s + f1suffix,
+		def2p + f1suffix,
+		def23s + m1suffix,
+		def13p + m2suffix,
+		def23s + f1suffix,
+		def13p + f1suffix,
+
+		stem,
+		sbj2p,
+		polite1,
+		polite2,
+		polite2 + definite,
+	];
+
+}
 /***********************************************************************************/
 function german_verb(lemma) {
 	if (!lemma)
