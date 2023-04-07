@@ -342,18 +342,75 @@ function hindustani_verb_ur(lemma) {
 	let ger = lemma;
 	let stem = ger.replace(/\u0646\u0627$/, ""); // -nA
 	
-	let m_sg_suffix = "\u0627"; // +A
-	let m_pl_suffix = "\u06D2"; // +e
-	let f_adj_suffix = "\u06CC"; // +I
-	let f_pl_suffix = "\u0650\u06CC\u06BA"; // +I~
-	let potpp = "\u0646"; // +n
-	let imppp = "\u062A"; // +t
+	let m1suffix = "\u0627"; // +A
+	let m2suffix = "\u06D2"; // +e
+	let f1suffix = "\u06CC"; // +I
+	let f2suffix = "\u0650\u06CC\u06BA"; // +I~
+
+	let conpp = stem + " \u06A9"; // [stem]+ k
+	let potpp = stem + "\u0646"; // [stem]+n
+	let imppp = stem + "\u062A"; // [stem]+t
+
+	let sbj1s = stem + "\u064F\u0648\u06BA"; // [stem]+U~
+	let sbj13p = stem + "\u06CC\u06BA"; // [stem]+e~
+	let sbj23s = stem + m2suffix; // [stem]+e
+	let sbj2p = stem + "\u0648"; // [stem]+o
+
+	let definite = "\u06AF"; // +g
+	let def1s = sbj1s + "\u200C" + definite; // (ZWNJ)
+	let def13p = sbj13p + "\u200C" + definite; // (ZWNJ)
+	let def23s = sbj23s + definite;
+	let def2p = sbj2p + definite;
+
+	let polite = stem + "\u0626\u06CC\u06D2"; // [stem]+iye
 
 	return [
+		ger,
+		potpp + m2suffix,
+		stem,
+		conpp + m2suffix,
+		conpp + "\u0631", // +r
 
+		ger,
+		potpp + m2suffix,
+		potpp + f1suffix,
+		potpp + f2suffix,
+		imppp + m1suffix,
+		imppp + m2suffix,
+		imppp + f1suffix,
+		imppp + f2suffix,
+		stem + m1suffix,
+		stem + m2suffix,
+		stem + f1suffix,
+		stem + f2suffix,
+
+		sbj1s,
+		sbj13p,
+		sbj23s,
+		sbj2p,
+		sbj23s,
+		sbj13p,
+
+		def1s + m1suffix,
+		def13p + m2suffix,
+		def1s + f1suffix,
+		def13p + f1suffix,
+		def23s + m1suffix,
+		def2p + m2suffix,
+		def23s + f1suffix,
+		def2p + f1suffix,
+		def23s + m1suffix,
+		def13p + m2suffix,
+		def23s + f1suffix,
+		def13p + f1suffix,
+
+		stem,
+		sbj2p,
+		stem + "\u06CC\u0648", // +iyo
+		polite,
+		polite + definite,
 	];
 
-	// detect irregular forms and use -en here?
 }
 
 /***********************************************************************************/
