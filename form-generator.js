@@ -341,7 +341,7 @@ function hindustani_verb_ur(lemma) {
 
 	let ger = lemma;
 	let stem = ger.replace(/\u0646\u0627$/, ""); // -nA
-	
+
 	let m1suffix = "\u0627"; // +A
 	let m2suffix = "\u06D2"; // +e
 	let f1suffix = "\u06CC"; // +I
@@ -350,19 +350,32 @@ function hindustani_verb_ur(lemma) {
 	let conpp = stem + " \u06A9"; // [stem]+ k
 	let potpp = stem + "\u0646"; // [stem]+n
 	let imppp = stem + "\u062A"; // [stem]+t
+	let prfm1 = stem; // [stem]+(0)
+	let prfother = stem; // [stem]+(0)
 
 	let sbj1s = stem + "\u064F\u0648\u06BA"; // [stem]+U~
 	let sbj13p = stem + "\u06CC\u06BA"; // [stem]+e~
 	let sbj23s = stem + m2suffix; // [stem]+e
 	let sbj2p = stem + "\u0648"; // [stem]+o
 
+	let polite1 = stem + "\u06CC\u0648", // [stem]+iyo
+	let polite2 = stem + "\u0626\u06CC\u06D2"; // [stem]+iye
+
+	if (stem.match(/\u0627$/)) {
+		prfm1 = stem + "\u06CC"; // [stem]+y
+		prfother = stem + "\u0626"; // [stem]+y'
+		sbj1s = stem + "\u0624\u06BA"; // [stem]+u'~
+		sbj13p = stem + "\u0626\u06CC\u06BA"; // [stem]+y'e~
+		sbj23s = stem + "\u0626" + m2suffix; // [stem]+y'e
+		sbj2p = stem + "\u0624"; // [stem]+u'
+		polite1 = stem + "\u06CC\u0648"; // [stem]+yo
+	}
+
 	let definite = "\u06AF"; // +g
 	let def1s = sbj1s + "\u200C" + definite; // (ZWNJ)
 	let def13p = sbj13p + "\u200C" + definite; // (ZWNJ)
 	let def23s = sbj23s + definite;
 	let def2p = sbj2p + definite;
-
-	let polite = stem + "\u0626\u06CC\u06D2"; // [stem]+iye
 
 	return [
 		ger,
@@ -379,10 +392,10 @@ function hindustani_verb_ur(lemma) {
 		imppp + m2suffix,
 		imppp + f1suffix,
 		imppp + f2suffix,
-		stem + m1suffix,
-		stem + m2suffix,
-		stem + f1suffix,
-		stem + f2suffix,
+		prfm1 + m1suffix,
+		prfother + m2suffix,
+		prfother + f1suffix,
+		prfother + f2suffix,
 
 		sbj1s,
 		sbj13p,
@@ -406,9 +419,9 @@ function hindustani_verb_ur(lemma) {
 
 		stem,
 		sbj2p,
-		stem + "\u06CC\u0648", // +iyo
-		polite,
-		polite + definite,
+		polite1,
+		polite2,
+		polite2 + definite,
 	];
 
 }
