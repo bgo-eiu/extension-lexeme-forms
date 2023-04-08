@@ -335,6 +335,144 @@ function german_noun_n_um_en(lemma) {
 
 /***********************************************************************************/
 
+function german_verb(lemma) {
+	if (!lemma)
+		return [];
+
+	let inf = lemma;
+	let stem = inf.replace(/e?n$/, "");
+
+	let p2suffix = "st";
+	let p3suffix = "t";
+
+	if (stem.match(/[csxzß]$/)) {
+		p2suffix = "t";
+	} else if (
+		stem.match(/[dt]$/)
+		|| (
+			stem.match(/[mn]$/)
+			&& !stem.match(/([lr]|[aeiouäöü]h?)[mn]$/)
+			&& !stem.match(/(mm|nn)$/)
+		)
+	) {
+		p2suffix = "est";
+		p3suffix = "et";
+	}
+
+	let pres = stem + "e";
+	let past = stem + (stem.match(/([dt]|[^aeiouäöühlr]m)$/) ? "ete" : "te");
+	let con1 = pres;
+	let con2 = past + (past.endsWith("e") ? "" : "e");
+
+	let imp = pres;
+	if (!stem.match(/([^aeiouäöühlr]m)$/))
+		imp = imp.replace(/e$/, "/") + imp;
+
+	return [
+		inf,
+		"zu " + inf,
+		pres,
+		stem + p2suffix,
+		stem + p3suffix,
+		inf,
+		stem + p3suffix,
+		inf,
+
+		past,
+		past + "st",
+		past,
+		past + (past.match(/(e[lr]|e)$/) ? "n" : "en"),
+		past + "t",
+		past + (past.match(/(e[lr]|e)$/) ? "n" : "en"),
+
+		con1,
+		con1 + "st",
+		con1,
+		con1 + "n",
+		con1 + "t",
+		con1 + "n",
+
+		con2,
+		con2 + "st",
+		con2,
+		con2 + "n",
+		con2 + "t",
+		con2 + "n",
+
+		imp,
+		stem + p3suffix,
+
+		inf + "d",
+		(stem.match(/^(be|emp|ent|er|ge|miss|ver|zer)/) || inf.endsWith("ieren") ? "" : "ge") + stem + p3suffix,
+
+	];
+
+	// detect irregular forms and use -en here?
+}
+
+/***********************************************************************************/
+
+function interlingua_noun(lemma) {
+	if (!lemma)
+		return [];
+
+	if (lemma.endsWith("s"))
+		return []; // What happens when a noun ends in -s?
+
+	return [
+		lemma,
+		lemma + "s",
+	];
+}
+
+/******************************************************************************/
+
+function interlingue_noun(lemma) {
+	if (!lemma)
+		return [];
+
+	if (lemma.endsWith("s"))
+		return []; // What happens when a noun ends in -s?
+
+	return [
+		lemma,
+		lemma + "s",
+	];
+}
+
+/*****************************************************************************/
+
+function ido_noun(lemma) {
+	if (!lemma)
+		return [];
+
+	if (!lemma.endsWith("o"))
+		return []; // Ido nouns should end with -o
+
+	const pl = lemma.replace(/o$/, "i");
+
+	return [
+		lemma,
+		pl,
+	];
+}
+
+/*****************************************************************************/
+
+function novial_noun(lemma) {
+	if (!lemma)
+		return [];
+
+	if (lemma.endsWith("s"))
+		return []; // What happens when a noun ends in -s?
+
+	return [
+		lemma,
+		lemma + "s",
+	];
+}
+
+/*****************************************************************************/
 function hindustani_verb_ur(lemma) {
 	if (!lemma)
 		return [];
@@ -421,7 +559,7 @@ function hindustani_verb_ur(lemma) {
 		sbj2p,
 		polite1,
 		polite2,
-		polite2 + definite,
+		polite2 + definite + m1suffix,
 	];
 
 }
@@ -511,147 +649,10 @@ function hindustani_verb_hi(lemma) {
 		sbj2p,
 		polite1,
 		polite2,
-		polite2 + definite,
+		polite2 + definite + m1suffix,
 	];
 
 }
-/***********************************************************************************/
-function german_verb(lemma) {
-	if (!lemma)
-		return [];
-
-	let inf = lemma;
-	let stem = inf.replace(/e?n$/, "");
-
-	let p2suffix = "st";
-	let p3suffix = "t";
-
-	if (stem.match(/[csxzß]$/)) {
-		p2suffix = "t";
-	} else if (
-		stem.match(/[dt]$/)
-		|| (
-			stem.match(/[mn]$/)
-			&& !stem.match(/([lr]|[aeiouäöü]h?)[mn]$/)
-			&& !stem.match(/(mm|nn)$/)
-		)
-	) {
-		p2suffix = "est";
-		p3suffix = "et";
-	}
-
-	let pres = stem + "e";
-	let past = stem + (stem.match(/([dt]|[^aeiouäöühlr]m)$/) ? "ete" : "te");
-	let con1 = pres;
-	let con2 = past + (past.endsWith("e") ? "" : "e");
-
-	let imp = pres;
-	if (!stem.match(/([^aeiouäöühlr]m)$/))
-		imp = imp.replace(/e$/, "/") + imp;
-
-	return [
-		inf,
-		"zu " + inf,
-		pres,
-		stem + p2suffix,
-		stem + p3suffix,
-		inf,
-		stem + p3suffix,
-		inf,
-
-		past,
-		past + "st",
-		past,
-		past + (past.match(/(e[lr]|e)$/) ? "n" : "en"),
-		past + "t",
-		past + (past.match(/(e[lr]|e)$/) ? "n" : "en"),
-
-		con1,
-		con1 + "st",
-		con1,
-		con1 + "n",
-		con1 + "t",
-		con1 + "n",
-
-		con2,
-		con2 + "st",
-		con2,
-		con2 + "n",
-		con2 + "t",
-		con2 + "n",
-
-		imp,
-		stem + p3suffix,
-
-		inf + "d",
-		(stem.match(/^(be|emp|ent|er|ge|miss|ver|zer)/) || inf.endsWith("ieren") ? "" : "ge") + stem + p3suffix,
-
-	];
-
-	// detect irregular forms and use -en here?
-}
-/******************************************************************************/
-function interlingua_noun(lemma) {
-	if (!lemma)
-		return [];
-
-	if (lemma.endsWith("s"))
-		return []; // What happens when a noun ends in -s?
-
-	return [
-		lemma,
-		lemma + "s",
-	];
-}
-
-/******************************************************************************/
-
-function interlingue_noun(lemma) {
-	if (!lemma)
-		return [];
-
-	if (lemma.endsWith("s"))
-		return []; // What happens when a noun ends in -s?
-
-	return [
-		lemma,
-		lemma + "s",
-	];
-}
-
-/*****************************************************************************/
-
-function ido_noun(lemma) {
-	if (!lemma)
-		return [];
-
-	if (!lemma.endsWith("o"))
-		return []; // Ido nouns should end with -o
-
-	const pl = lemma.replace(/o$/, "i");
-
-	return [
-		lemma,
-		pl,
-	];
-}
-
-/*****************************************************************************/
-
-function novial_noun(lemma) {
-	if (!lemma)
-		return [];
-
-	if (lemma.endsWith("s"))
-		return []; // What happens when a noun ends in -s?
-
-	return [
-		lemma,
-		lemma + "s",
-	];
-}
-
-/*****************************************************************************/
 
 if (typeof module === "undefined")
 	module = {};
@@ -661,8 +662,6 @@ module.exports = {
 	english_noun,
 	esperanto_noun,
 	esperanto_verb,
-	hindustani_verb_hi,
-	hindustani_verb_ur,
 	german_noun_f_en,
 	german_noun_f_e,
 	german_noun_f_s,
@@ -677,5 +676,7 @@ module.exports = {
 	interlingue_noun,
 	ido_noun,
 	novial_noun,
+	hindustani_verb_ur,
+	hindustani_verb_hi,
 };
 
