@@ -661,6 +661,8 @@ module.exports = {
 	english_noun,
 	esperanto_noun,
 	esperanto_verb,
+	hindustani_verb_hi,
+	hindustani_verb_ur,
 	german_noun_f_en,
 	german_noun_f_e,
 	german_noun_f_s,
