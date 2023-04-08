@@ -126,7 +126,7 @@ if (document.location.pathname.endsWith("/hindustani-verb-basic-intransitive-ur/
 	document.location.pathname.match("/hindustani-verb-additive-causative-ur/edit/") ||
 	document.location.pathname.endsWith("/hindustani-verb-additive-causative-double-ur/") ||
 	document.location.pathname.match("/hindustani-verb-additive-causative-double-ur/edit/")) {
-	create_button(hindustani_verb_ur, "generate forms");
+	create_button(hindustani_verb_ur, "روپ بنائیں");
 }
 
 if (document.location.pathname.endsWith("/hindustani-verb-basic-intransitive-hi/") ||
@@ -139,5 +139,5 @@ if (document.location.pathname.endsWith("/hindustani-verb-basic-intransitive-hi/
 	document.location.pathname.match("/hindustani-verb-additive-causative-hi/edit/") ||
 	document.location.pathname.endsWith("/hindustani-verb-additive-causative-double-hi/") ||
 	document.location.pathname.match("/hindustani-verb-additive-causative-double-hi/edit/")) {
-	create_button(hindustani_verb_hi, "generate forms");
+	create_button(hindustani_verb_hi, "रूप बनायें");
 }
