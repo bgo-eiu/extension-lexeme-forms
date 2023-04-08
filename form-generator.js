@@ -589,7 +589,7 @@ function hindustani_verb_hi(lemma) {
 	let polite1 = stem + "\u093F\u092F\u094B"; // [stem]+iyo
 	let polite2 = stem + "\u093F\u092F\u0947"; // [stem]+iye
 
-	if (stem.match(/\u0627$/)) {
+	if (stem.match(/\u093E$/)) {
 		prfpp = stem + "\u092F"; // [stem]+y
 		sbj1s = stem + "\u090A\u0901"; // [stem]+u'~
 		sbj13p = stem + "\u092F\u0947\u0902"; // [stem]+y'e~
