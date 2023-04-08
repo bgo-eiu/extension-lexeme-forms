@@ -358,7 +358,7 @@ function hindustani_verb_ur(lemma) {
 	let sbj23s = stem + m2suffix; // [stem]+e
 	let sbj2p = stem + "\u0648"; // [stem]+o
 
-	let polite1 = stem + "\u06CC\u0648", // [stem]+iyo
+	let polite1 = stem + "\u06CC\u0648"; // [stem]+iyo
 	let polite2 = stem + "\u0626\u06CC\u06D2"; // [stem]+iye
 
 	if (stem.match(/\u0627$/)) {
@@ -448,7 +448,7 @@ function hindustani_verb_hi(lemma) {
 	let sbj23s = stem + m2suffix; // [stem]+e
 	let sbj2p = stem + "\u094B"; // [stem]+o
 
-	let polite1 = stem + "\u093F\u092F\u094B", // [stem]+iyo
+	let polite1 = stem + "\u093F\u092F\u094B"; // [stem]+iyo
 	let polite2 = stem + "\u093F\u092F\u0947"; // [stem]+iye
 
 	if (stem.match(/\u0627$/)) {
