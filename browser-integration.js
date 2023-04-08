@@ -75,14 +75,6 @@ if (document.location.pathname.endsWith("/esperanto-verb/") || document.location
 	create_button(esperanto_verb, "generate forms");
 }
 
-if (document.location.pathname.endsWith("/hindustani-verb-basic-intransitive-hi/") || document.location.pathname.match("/hindustani-verb-basic-intransitive-hi/edit/")) {
-	create_button(hindustani_verb_hi, "generate forms");
-}
-
-if (document.location.pathname.endsWith("/hindustani-verb-basic-intransitive-ur/") || document.location.pathname.match("/hindustani-verb-basic-intransitive-ur/edit/")) {
-	create_button(hindustani_verb_ur, "generate forms");
-}
-
 if (document.location.pathname.endsWith("/german-noun-feminine/") || document.location.pathname.match("/german-noun-feminine/edit/")) {
 	create_button(german_noun_f_en, "-en");
 	create_button(german_noun_f_e, "-¨e", "-/-¨e, -e, -er/-¨er, -sal/-sale, -nis/-nisse, -a/-en");
@@ -124,3 +116,28 @@ if (document.location.pathname.endsWith("/novial-noun/") || document.location.pa
 	create_button(novial_noun, "generate forms");
 }
 
+if (document.location.pathname.endsWith("/hindustani-verb-basic-intransitive-ur/") ||
+	document.location.pathname.match("/hindustani-verb-basic-intransitive-ur/edit/") ||
+	document.location.pathname.endsWith("/hindustani-verb-basic-transitive-ur/") ||
+	document.location.pathname.match("/hindustani-verb-basic-transitive-ur/edit/") ||
+	document.location.pathname.endsWith("/hindustani-verb-additive-transitive-ur/") ||
+	document.location.pathname.match("/hindustani-verb-additive-transitive-ur/edit/") ||
+	document.location.pathname.endsWith("/hindustani-verb-additive-causative-ur/") ||
+	document.location.pathname.match("/hindustani-verb-additive-causative-ur/edit/") ||
+	document.location.pathname.endsWith("/hindustani-verb-additive-causative-double-ur/") ||
+	document.location.pathname.match("/hindustani-verb-additive-causative-double-ur/edit/")) {
+	create_button(hindustani_verb_ur, "generate forms");
+}
+
+if (document.location.pathname.endsWith("/hindustani-verb-basic-intransitive-hi/") ||
+	document.location.pathname.match("/hindustani-verb-basic-intransitive-hi/edit/") ||
+	document.location.pathname.endsWith("/hindustani-verb-basic-transitive-hi/") ||
+	document.location.pathname.match("/hindustani-verb-basic-transitive-hi/edit/") ||
+	document.location.pathname.endsWith("/hindustani-verb-additive-transitive-hi/") ||
+	document.location.pathname.match("/hindustani-verb-additive-transitive-hi/edit/") ||
+	document.location.pathname.endsWith("/hindustani-verb-additive-causative-hi/") ||
+	document.location.pathname.match("/hindustani-verb-additive-causative-hi/edit/") ||
+	document.location.pathname.endsWith("/hindustani-verb-additive-causative-double-hi/") ||
+	document.location.pathname.match("/hindustani-verb-additive-causative-double-hi/edit/")) {
+	create_button(hindustani_verb_hi, "generate forms");
+}
