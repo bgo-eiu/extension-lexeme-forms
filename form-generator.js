@@ -717,6 +717,38 @@ function hindustani_noun_m_ur(lemma) {
 	];
 }
 
+function punjabi_verb_shah(lemma, variant) {
+	if (!lemma)
+		return [];
+
+	// lehje options:
+	// pothohari
+	// jatki
+	// shahpuri doabi
+	// salt range shahpuri
+	// thal shahpuri
+	// dhanni
+	// majhi
+	// doabi
+	// old punjabi
+	// malwai/ludhiani (?)
+	// puadhi (?)
+	let lehja = variant;
+	let ger = lemma;
+	let stem = ger.replace(/\u0768$/, ""); // -N
+
+	return [
+		ger,
+		ger,
+		// ger +A
+		// stem +(0~I)
+		// stem +(0~I) +ke
+		// stem +(d~n)iA~
+		// stem +iA~
+	];
+
+}
+
 if (typeof module === "undefined")
 	module = {};
 
