@@ -479,6 +479,13 @@ function hindustani_verb_ur(lemma) {
 
 	let ger = lemma;
 	let stem = ger.replace(/\u0646\u0627$/, ""); // -nA
+	let stemi = ger.replace(/\u0646\u0627$/, ""); // -nA
+
+	if (stem.match(/\u0650\u06CC$/)) {
+		stemi = stem.replace(/\u0650\u06CC$/, "\u06CC"); // -I
+	} else if (stem.match(/\u06CC$/)) {
+		stemi = stem.replace(/\u06CC$/, "\u06D2"); // -e
+	}
 
 	let m1suffix = "\u0627"; // +A
 	let m2suffix = "\u06D2"; // +e
@@ -499,7 +506,25 @@ function hindustani_verb_ur(lemma) {
 	let polite1 = stem + "\u06CC\u0648"; // [stem]+iyo
 	let polite2 = stem + "\u0626\u06CC\u06D2"; // [stem]+iye
 
-	if (stem.match(/\u0627$/)) {
+	if (stem.match(/\u06CC$/)) { // -I~e
+		prfm1 = stemi.replace(/\u06D2$/, "\u06CC"); // [stem]-I+y
+		prfother = stemi.replace(/\u06D2$/, "\u06CC"); // [stem]-I+y
+		sbj1s = stemi.replace(/\u06D2$/, "") + "\u064F\u0648\u06BA"; // [stem]+U~
+		sbj13p = stemi.replace(/\u06D2$/, "") + "\u06CC\u06BA"; // [stem]+e~
+		sbj23s = stemi.replace(/\u06D2$/, "") + m2suffix; // [stem]+e
+		sbj2p = stemi.replace(/\u06D2$/, "") + "\u0648"; // [stem]+o
+		polite1 = stemi.replace(/\u06D2$/, "\u06CC") + "\u0648"; // [stem]-e+o
+		polite2 = stemi.replace(/\u06D2$/, "\u06CC").replace(/\u06CC$/, "\u0650\u06CC") + "\u062C\u06CC\u06D2"; // [stem]+jiye
+	} else if (stem.match(/\u064F\u0648$/)) { // -U
+		prfm1 = stem.replace(/\u064F\u0648$/, "\u0648"); // [stem]-U+u
+		prfother = stem.replace(/\u064F\u0648$/, "\u0648\u0626"); // [stem]-U+uy'
+		sbj1s = prfm1 + "\u0624\u06BA"; // [stem]-U+u+u'~
+		sbj13p = prfother + "\u06CC\u06BA"; // [stem]-U+uy'+e~
+		sbj23s = prfother + "\u06CC"; // [stem]-U+uy'+e
+		sbj2p = prfm1 + "\u0624"; // [stem]-U+u+o
+		polite1 = prfm1 + "\u06CC\u0648"; // [stem]-U+u+yo
+		polite2 = prfother + "\u06CC\u06D2"; // [stem]-U+u+ye
+	} else if (stem.match(/\u0627$/) || stem.match(/\u0648$/)) { // -A || -o
 		prfm1 = stem + "\u06CC"; // [stem]+y
 		prfother = stem + "\u0626"; // [stem]+y'
 		sbj1s = stem + "\u0624\u06BA"; // [stem]+u'~
@@ -518,7 +543,7 @@ function hindustani_verb_ur(lemma) {
 	return [
 		ger,
 		potpp + m2suffix,
-		stem,
+		stemi,
 		conpp + m2suffix,
 		conpp + "\u0631", // +r
 
@@ -555,7 +580,7 @@ function hindustani_verb_ur(lemma) {
 		def23s + f1suffix,
 		def13p + f1suffix,
 
-		stem,
+		stemi,
 		sbj2p,
 		polite1,
 		polite2,
