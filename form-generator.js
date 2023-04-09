@@ -520,7 +520,7 @@ function hindustani_verb_ur(lemma) {
 		prfother = stem.replace(/\u064F\u0648$/, "\u0648\u0626"); // [stem]-U+uy'
 		sbj1s = prfm1 + "\u0624\u06BA"; // [stem]-U+u+u'~
 		sbj13p = prfother + "\u06CC\u06BA"; // [stem]-U+uy'+e~
-		sbj23s = prfother + "\u06CC"; // [stem]-U+uy'+e
+		sbj23s = prfother + "\u06D2"; // [stem]-U+uy'+e
 		sbj2p = prfm1 + "\u0624"; // [stem]-U+u+o
 		polite1 = prfm1 + "\u06CC\u0648"; // [stem]-U+u+yo
 		polite2 = prfother + "\u06CC\u06D2"; // [stem]-U+u+ye
