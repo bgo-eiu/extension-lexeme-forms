@@ -679,6 +679,22 @@ function hindustani_verb_hi(lemma) {
 
 }
 
+function persian_noun(lemma) {
+	if (!lemma)
+		return [];
+
+	let stem = lemma;
+
+	// exclude breaking characters
+	if (!stem.match(/([\u0622\u0627\u0631\u0632\u0630\u0698\u062F\u0648\u0621]|\u0627\u064B)$/))
+		stem = stem + "\u200C"; // ZWNJ
+
+	return [
+		lemma,
+		stem + "\u0647\u0627",
+	];
+}
+
 if (typeof module === "undefined")
 	module = {};
 
@@ -703,5 +719,6 @@ module.exports = {
 	novial_noun,
 	hindustani_verb_ur,
 	hindustani_verb_hi,
+	persian_noun,
 };
 
