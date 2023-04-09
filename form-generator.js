@@ -691,7 +691,29 @@ function persian_noun(lemma) {
 
 	return [
 		lemma,
-		stem + "\u0647\u0627",
+		stem + "\u0647\u0627", // +hA
+	];
+}
+
+function hindustani_noun_m_ur(lemma) {
+	if (!lemma)
+		return [];
+
+	let pl = lemma;
+	let obl = lemma;
+
+	if (pl.match(/([\u0622\u0627\u06C1\u06C3])$/) && !pl.match(/[\u0627\u0648][\u06C1\u06C3]$/)) {
+		pl = pl.replace(/.$/, "\u06D2"); // +e
+		obl = obl.replace(/.$/, "\u0648\u06BA"); // +o~
+	} else {
+		obl = obl + "\u0648\u06BA";
+	}
+
+	return [
+		lemma,
+		pl,
+		pl,
+		obl,
 	];
 }
 
@@ -720,5 +742,6 @@ module.exports = {
 	hindustani_verb_ur,
 	hindustani_verb_hi,
 	persian_noun,
+	hindustani_noun_m_ur,
 };
 
